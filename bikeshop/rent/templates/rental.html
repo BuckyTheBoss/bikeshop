@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}All Rentals{% endblock %}
+{% block content %}
+	<h3>Rental Details:</h3>
+	<ul>
+		<li>Vehicle ID: {{rental.vehicle.id}}</li>
+		<li>Rented On: {{rental.rental_date}}</li>
+		{% if rental.return_date is None %}
+			<li>Return Status: Not yet returned</li>
+		{% else %}
+			<li> Returned On: {{rental.return_date}}</li>
+		{% endif %}
+	</ul>
+	<h3>Customer details:</h3>
+	<ul>
+		<li>Name: {{rental.customer.first_name}} {{rental.customer.last_name}}</li>
+		<li>Address: {{rental.customer.address}}, {{rental.customer.city}}, {{rental.customer.country}}</li>
+		<li>Phone: {{rental.customer.phone_number}}</li>
+		<li>Email: {{rental.customer.email}}</li>
+	</ul>
+	<a class="btn btn-md btn-secondary" href="{% url 'customer' rental.customer.id %}">Customer</a>
+	<h3>Vehicle details:</h3>
+	<ul>
+		<li>ID: {{rental.vehicle.id}}</li>
+		<li>Type: {{rental.vehicle.vehicle_type.name}}</li>
+		<li>Size: {{rental.vehicle.size.name}}</li>
+		<li>Real Cost: {{rental.vehicle.real_cost}}</li>
+	</ul>
+	<a class="btn btn-md btn-secondary" href="{% url 'vehicle' rental.vehicle.id %}">Vehicle</a>
+{% endblock %}

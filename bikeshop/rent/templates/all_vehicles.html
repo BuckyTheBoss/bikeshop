@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}All Vehicles{% endblock %}
+{% block content %}
+	<div class="container flex">
+		<div class="row">
+			<div class="col-3"></div>
+			<div class="col-6">
+				<h3 class="mt-4 mb-4">Customer Info</h3>
+				{% for vehicle in vehicle_list %}
+					<h3>Vehicle details:</h3>
+					<ul>
+						<li>ID: {{vehicle.id}}</li>
+						<li>Type: {{vehicle.vehicle_type.name}}</li>
+						<li>Size: {{vehicle.size.name}}</li>
+						<li>Real Cost: {{vehicle.real_cost}}</li>
+					</ul>
+					{% if vehicle in unrented_list %}
+						<a class="btn btn-md btn-success" href="{% url 'vehicle' vehicle.id %}">View Unrented Vehicle</a>
+					{% else %}
+						<a class="btn btn-md btn-danger" href="{% url 'vehicle' vehicle.id %}">View Rented Vehicle</a>
+					{% endif %}
+					
+				{% endfor %}
+			</div>
+			<div class="col-3"></div>
+		</div>
+	</div>
+
+{% endblock %}

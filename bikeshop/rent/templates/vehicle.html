@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Vehicle #{% endblock %}
+{% block content %}
+	<div class="container flex">
+		<div class="row">
+			<div class="col-3"></div>
+			<div class="col-6">
+				<h3 class="mt-4 mb-4">Customer Info</h3>
+					<h3>Vehicle details:</h3>
+					<ul>
+						<li>ID: {{vehicle.id}}</li>
+						<li>Type: {{vehicle.vehicle_type.name}}</li>
+						<li>Size: {{vehicle.size.name}}</li>
+						<li>Real Cost: {{vehicle.real_cost}}</li>
+					</ul>
+					
+					
+			</div>
+			<div class="col-3"></div>
+		</div>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}All Rentals{% endblock %}
+{% block content %}
+	<div class="container flex">
+		<div class="row">
+			<div class="col-3"></div>
+			<div class="col-6">
+				<h2>Rental list</h2>
+				{% for rental in rental_list%}
+				
+				<ul>
+					<li>Vehicle ID: {{rental.vehicle.id}}</li>
+					<li>Rented On: {{rental.rental_date}}</li>
+					{% if rental.return_date is None %}
+						<li>Return Status: Not yet returned</li>
+					{% else %}
+						<li> Returned On: {{rental.return_date}}</li>
+					{% endif %}
+				</ul>
+				<a class="btn btn-md btn-secondary" href="{% url 'rental' rental.id %}">View Rental</a>
+				<br>
+				<div class="dropdown-divider"></div>
+				{% endfor %}
+			</div>
+			<div class="col-3"></div>
+		</div>
+	</div>
+{% endblock %}
