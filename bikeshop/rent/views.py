@@ -64,11 +64,7 @@ def add_vehicle(request):
 
 
 def add_customer(request):
-	city_dict = {
-		'Israel' : ['Jerusalem','Tel Aviv', "Be'er Sheva"],
-		'United States of America' : ['New York', 'California', 'Colorado'],
-		'Australia' : ['Perth', 'Sydny']
-	}
+	
 	if request.method == 'POST':
 
 		if Customer.objects.filter(email=request.POST.get('email')).first() != None:
@@ -78,7 +74,7 @@ def add_customer(request):
 		customer = Customer(first_name=request.POST.get('first_name'),last_name=request.POST.get('last_name'),email=request.POST.get('email'),phone_number=request.POST.get('phone_number'),address=request.POST.get('address'),city=request.POST.get('city'),country=request.POST.get('country'))
 		customer.save()
 		return redirect('all_customers')
-	return render(request, 'add_customer.html', {'city_dict' : city_dict})
+	return render(request, 'add_customer.html')
 
 def all_customers(request):
 	customer_list = Customer.objects.all()

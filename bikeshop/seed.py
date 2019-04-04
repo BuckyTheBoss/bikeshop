@@ -23,6 +23,10 @@ def generate_address():
 	fake = Faker()
 	return fake.street_address()
 
+def generate_address2():
+	fake = Faker()
+	return fake.secondary_address()
+
 def generate_country():
 	fake = Faker()
 	return fake.country()
@@ -39,6 +43,10 @@ def generate_end_date():
 	fake = Faker()
 	end_date = [fake.date_time_this_month(before_now=True, after_now=False, tzinfo=None), None]
 	return random.choice(end_date)
+
+def generate_zip():
+	fake = Faker()
+	return fake.zipcode()
 
 def pick_customer():
 	customers = Customer.objects.all()
@@ -80,4 +88,21 @@ def generate_vehicles(number):
 		vehicle = Vehicle(vehicle_type=random.choice(types), date_created=timezone.now(), real_cost=random.choice(costs), size=random.choice(sizes))
 		vehicle.save()
 
+def fix_cust_addy():
+	customers = Customer.objects.all()
+	addresses = Address.objects.all()
+	for customer in customers:
+		customer.address = random.choice(addresses)
+		customer.save()
 
+def generate_addresses(number):
+	for i in range(0,number):
+		addy = Address(address=generate_address(), address2=generate_address2(), city=generate_city(), country=generate_country(), postal_code=generate_zip())
+		addy.save()
+
+def generate_station(number):
+	addresses = Address.objects.all()
+	for i in range(0, number):	
+		address = random.choice(addresses)
+		station = Rental_Station(name=address.address, capacity= random.randint(5,25), address=address)
+		station.save()
