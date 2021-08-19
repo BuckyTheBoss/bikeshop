@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Add Station{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+	<div class="container flex">
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				
+				
+				
+				<h1>Add Station</h1>
+				<form method="post" class="container flex"> 
+					{% csrf_token %}
+					{{ form|crispy }}
+					<button class="btn btn-secondary" type="submit" >Add Station</button>
+				</form>
+			</div>
+			<div class="col-2"></div>
+		</div>
+	</div>
+{% endblock %}

@@ -11,4 +11,7 @@ urlpatterns = [
 	path('customer', views.all_customers, name='all_customers'),
 	path('customer/<int:customer_id>', views.customer, name='customer'),
 	path('customer/add', views.add_customer, name='add_customer'),
+	path('station', views.all_stations, name='all_stations'),
+	path('station/<int:station_id>', views.station, name='station'),
+	path('station/add', views.add_station, name='add_station'),
 ]

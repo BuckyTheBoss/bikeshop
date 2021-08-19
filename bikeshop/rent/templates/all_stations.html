@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}All Stations{% endblock %}
+{% block content %}
+	<div class="container flex">
+		<div class="row">
+			<div class="col-3"></div>
+			<div class="col-6">
+				<h3 class="mt-4 mb-4">Stations:</h3>
+					<ul class="btn-group-vertical">
+				{% for station in station_list %}
+						<a href="{% url 'station' station.id %}" type="button" class="btn btn-info mt-1"> {{station.name}} Station</a>
+				{% endfor %}
+					</ul>
+			</div>
+			<div class="col-3"></div>
+		</div>
+	</div>
+
+{% endblock %}

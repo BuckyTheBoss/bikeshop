@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Vehicle #{% endblock %}
+{% block title %}Vehicle #{{vehicle.id}}{% endblock %}
 {% block content %}
 	<div class="container flex">
 		<div class="row">
@@ -14,7 +14,11 @@
 						<li>Real Cost: {{vehicle.real_cost}}</li>
 					</ul>
 					
-					
+					{% if not active %}
+						<h3>Vehicle is at <a href="linktostation">{{vehicle_at_station.rental_station.name}}</a></h3>
+					{% else %}
+						<h3> Vehicle was rented {{vehicle.rental_set.last.rental_date | timesince }} ago <br>from <a href="{% url 'station' vehicle_at_station.rental_station.id%}">{{vehicle_at_station.rental_station.name}}</a><br> by {{vehicle.rental_set.last.customer.first_name}}  {{vehicle.rental_set.last.customer.last_name}}</h3>
+					{% endif %}
 			</div>
 			<div class="col-3"></div>
 		</div>

@@ -3,49 +3,40 @@ from rent.models import *
 import random
 from django.utils import timezone
 
+fake = Faker()
+
 def generate_first_name():
-	fake = Faker()
 	return fake.first_name()
 
 def generate_last_name():
-	fake = Faker()
 	return fake.last_name()
 
 def generate_email():
-	fake = Faker()
 	return fake.ascii_safe_email()
 
 def generate_number():
-	fake = Faker()
 	return fake.phone_number()
 
 def generate_address():
-	fake = Faker()
 	return fake.street_address()
 
 def generate_address2():
-	fake = Faker()
 	return fake.secondary_address()
 
 def generate_country():
-	fake = Faker()
 	return fake.country()
 
 def generate_city():
-	fake = Faker()
 	return fake.city()
 
 def generate_start_date():
-	fake = Faker()
 	return fake.date_time_between(start_date="-3y", end_date="-30d", tzinfo=None)
 
 def generate_end_date():
-	fake = Faker()
 	end_date = [fake.date_time_this_month(before_now=True, after_now=False, tzinfo=None), None]
 	return random.choice(end_date)
 
 def generate_zip():
-	fake = Faker()
 	return fake.zipcode()
 
 def pick_customer():
@@ -58,11 +49,13 @@ def pick_vehicle():
 		if not vehicle.is_rented():
 			return vehicle
 	return None	
-			
+
+		
 
 
 def generate_customers(number):
 	for i in range(0,number):
+		print(f'adding customer #{i}')
 		first_name = generate_first_name()
 		last_name = generate_last_name()
 		email = generate_email()
@@ -106,3 +99,16 @@ def generate_station(number):
 		address = random.choice(addresses)
 		station = Rental_Station(name=address.address, capacity= random.randint(5,25), address=address)
 		station.save()
+
+def populate_stations():
+	# every rental record should have a corresponding VehicleAtRentalStation record
+	# the rental_date should be identical to the departure_date
+	start_date = generate_start_date()
+	for rental in Rental.objects.all():
+		record = VehicleAtRentalStation(arrival_date=start_date,departure_date=rental.rental_date,vehicle=rental.vehicle,rental_station=random.choice(Rental_Station.objects.all()))
+		record.save()
+		if rental.return_date is not None:
+			start_date = rental.return_date
+
+
+

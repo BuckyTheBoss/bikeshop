@@ -15,6 +15,7 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
+
 					<li class="nav-item dropdown ml-4">
 						<a class="nav-link dropdown-toggle" href="#" id="vehicleDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Vehicles
@@ -24,6 +25,7 @@
 							<a class="dropdown-item" href="{% url 'add_vehicle' %}">Add Vehicle</a>
 						</div>
 					</li>
+
 					<li class="nav-item dropdown ml-4">
 						<a class="nav-link dropdown-toggle" href="#" id="rentalDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Rentals
@@ -33,15 +35,30 @@
 							<a class="dropdown-item" href="{% url 'add_rental' %}">Add Rental</a>
 						</div>
 					</li>
+
 					<li class="nav-item dropdown ml-4">
-						<a class="nav-link dropdown-toggle" href="#" id="rentalDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<a class="nav-link dropdown-toggle" href="#" id="customerDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Customers
 						</a>
-						<div class="dropdown-menu" aria-labelledby="rentalDropdown">
+						<div class="dropdown-menu" aria-labelledby="customerDropdown">
 							<a class="dropdown-item" href="{% url 'all_customers' %}">View all Customers</a>
 							<a class="dropdown-item" href="{% url 'add_customer' %}">Add Customer</a>
 						</div>
 					</li>
+
+
+
+					<li class="nav-item dropdown ml-4">
+						<a class="nav-link dropdown-toggle" href="#" id="stationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Stations
+						</a>
+						<div class="dropdown-menu" aria-labelledby="stationDropdown">
+							<a class="dropdown-item" href="{% url 'all_stations' %}">View all Stations</a>
+							<a class="dropdown-item" href="{% url 'add_station' %}">Add Station</a>
+						</div>
+					</li>
+
+
 				</ul>
 				<form class="form-inline my-2 my-lg-0">
 					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
